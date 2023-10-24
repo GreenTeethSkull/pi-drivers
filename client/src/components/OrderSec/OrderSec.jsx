@@ -1,6 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from "react";
-import { setOrder, getDrivers } from '../../redux/action';
 
 export default function OrderSec(props) {
 

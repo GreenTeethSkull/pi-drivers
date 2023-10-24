@@ -35,6 +35,7 @@ export default function Home() {
         asc_desc: ''
     });
 
+    let [resetKey, setResetKey] = useState(0);
 
     useEffect(() => {
         dispatch(getDrivers());
@@ -87,6 +88,8 @@ export default function Home() {
             if (newOrderState.tipo && newOrderState.asc_desc) {
                 dispatch(setOrder([newOrderState.tipo, newOrderState.asc_desc]));
             }
+        }).then(()=>{
+            dispatch(setPage(1));
         }).catch((error) => {
             console.error(error);
         });
@@ -101,14 +104,20 @@ export default function Home() {
 
     const handleReset = () => {
         dispatch(reset());
+        setSer('');
+        setFilterstate({
+            teams: '--Todos--',
+            origin: '--Todos--'
+        });
+        setResetKey(prevKey => prevKey + 1);
     }
 
     return (
         <div>
-            {/* <button onClick={handleReset}>Reset</button> */}
+            <button onClick={handleReset}>Reset</button>
             <SearchBar handleChange={handleChange} handleSearch={handleAction} ser={ser} />
-            <FilterSec handleChange={handleAction} allTeams={allTeams} />
-            <OrderSec handleChange={handleAction} orderstate={orderstate} />
+            <FilterSec handleChange={handleAction} allTeams={allTeams} filterstate={filterstate} />
+            <OrderSec key={resetKey} handleChange={handleAction} orderstate={orderstate} />
             <div>
                 {pageNumbers.map((pageNumber) => (
                     <button key={pageNumber} onClick={()=>handlePaginate(pageNumber)}>{pageNumber}</button>

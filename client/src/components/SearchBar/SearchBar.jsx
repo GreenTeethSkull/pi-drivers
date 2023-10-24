@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getDriversByName } from '../../redux/action';
 
 export default function SearchBar(props) {
 

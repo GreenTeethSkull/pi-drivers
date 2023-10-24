@@ -90,7 +90,8 @@ const reducer = (state = initialState, action) => {
         case RESET:
             return {
                 ...state,
-                allDrivers: state.allDriversInmutable
+                allDrivers: state.allDriversInmutable,
+                currentPage: 1,
             }
         default:
             return {
